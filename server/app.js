@@ -13,7 +13,6 @@ app.use(express.static('../client'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-///
 //app.all('*', function(req, res) {
 //    res.redirect("/");
 //});
@@ -28,6 +27,10 @@ io.on('connection', function(socket){
 
     });
 });
+
+//BRANCH TEST
+//BRANCH TEST
+//BRANCH TEST
 
 httpServer.listen(3000, '0.0.0.0');
 console.log("Server listening on port 3000");
