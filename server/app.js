@@ -22,15 +22,7 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
 
     });
-
-    socket.on("connected", function() {
-
-    });
 });
-
-//BRANCH TEST
-//BRANCH TEST
-//BRANCH TEST
 
 httpServer.listen(3000, '0.0.0.0');
 console.log("Server listening on port 3000 ");
