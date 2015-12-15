@@ -1,4 +1,4 @@
-chatApp.factory('socketIO', function ($rootScope) {
+chatApp.factory('socket', function ($rootScope) {
     var socket = io();
     socket.on("connect", function() {
 

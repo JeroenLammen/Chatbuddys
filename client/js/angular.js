@@ -14,13 +14,13 @@ chatApp.config(function($routeProvider, $locationProvider) {
 });
 
 
-chatApp.controller("loginController", function($scope, $http, socketIO) {
+chatApp.controller("loginController", function($scope, $http, socket) {
     alert("loginController");
     //PLAATS HIER JAVASCRIPT VOOR DE LOGIN PAGINA
 });
 
 
-chatApp.controller("chatController", function($scope, $http, socketIO) {
+chatApp.controller("chatController", function($scope, $http, socket) {
     alert("chatController");
     //PLAATS HIER JAVASCRIPT VOOR DE CHAT PAGINA
 

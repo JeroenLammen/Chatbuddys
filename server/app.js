@@ -24,7 +24,7 @@ io.on('connection', function(socket){
 
     });
 
-    socket.on("connected", function(desktop) {
+    socket.on("connected", function() {
 
     });
 });
