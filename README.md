@@ -1,3 +1,3 @@
 # S4DHangouts
 
-Project met Node.js
+Project met Node.js, Socket.io & WebRTC
