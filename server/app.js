@@ -29,5 +29,5 @@ io.on('connection', function(socket){
     });
 });
 
-httpServer.listen(8001, '0.0.0.0');
+httpServer.listen(3000, '0.0.0.0');
 console.log("Server listening on port 8001");
