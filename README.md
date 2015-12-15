@@ -1,3 +1,3 @@
-# s4dproject
+# S4DHangouts
 
 Project met Node.js
