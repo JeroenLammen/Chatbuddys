@@ -1,0 +1,13 @@
+{
+  "name": "Hangouts",
+  "version": "0.0.1",
+  "description": "Project S4D Johan & Jeroen",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "1.14.1",
+    "express": "4.13.3",
+    "mongodb": "^2.0.42",
+    "mongoose": "4.1.12",
+    "socket.io": "1.3.7"
+  }
+}
