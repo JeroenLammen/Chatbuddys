@@ -1,0 +1,54 @@
+<img class="backgroundLogo" src="../images/logo.png" alt="Logo chatbuddy's">
+
+<div id="chatWrapper">
+
+    <div id="topbar">
+        <div id="info">
+            <h1>{{username}}</h1>
+            <div id="notification">
+                <h3>Enable notifications</h3>
+                <div id="slider">
+                    <div id="sliderPosition" ng-click="sliderChange()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sidebar">
+        <h3>Online:</h3>
+        <div id="usersOnline" class="slimScroll">
+            <div ng-repeat="user in usersOnline track by $index">
+                <h3>{{user}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageWindow">
+        <!--<ul>-->
+            <!--<li ng-repeat="message in messages | orderBy: 'date'">-->
+                <!--<p>{{message.body}}</p>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <div id="allMessages">
+            <div class="balloon"
+                 ng-repeat="message in messages | orderBy: 'date'"
+                 ng-style="{bottom: 60 * $index + 10 + 'px'}">
+                <h4>{{message.author}}</h4>
+                <p>{{message.body}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottombar">
+        <div id="media">
+            <i ng-class="fa_icon" ng-click="requestMicrophone()"></i>
+            <i class="fa fa-video-camera fa-2x" ng-click="requestCamera()"></i>
+            <i class="fa fa-paperclip fa-2x" ng-click="openFile()"></i>
+            <input type="file" id="target" hidden fileread="file" />
+        </div>
+        <div id="textbar">
+            <input type="text" placeholder="Write a message..." ng-keypress="send($event)" ng-model="message">
+        </div>
+    </div>
+
+</div>

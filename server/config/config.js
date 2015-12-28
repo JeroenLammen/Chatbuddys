@@ -1,7 +1,7 @@
 exports.database = {
-    server: 'serverName',
+    server: 'server',
     port: 0000,
-    database: 'databaseName',
+    database: 'database',
     getURL: function(){
         return 'mongodb://' + this.server + ':' + this.port + '/' + this.database;
     }

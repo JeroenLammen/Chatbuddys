@@ -1,0 +1,314 @@
+.backgroundLogo {
+    width: 20%;
+    position: absolute;
+    margin: auto;
+    left: 20%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#chatWrapper {
+    width: 80%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 20px;
+    bottom: 20px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    z-index: 10;
+    color: black;
+}
+
+#topbar{
+    width: 100%;
+    height: 10%;
+    background-color: rgba(255,255,255,1);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#topbar #info {
+    width: 75%;
+    height: 10%;
+    position: absolute;
+    left: 25%;
+    padding: 10px;
+}
+
+#topbar h1 {
+    display: inline-block;
+}
+
+#topbar #notification {
+    float: right;
+    padding: 10px 0;
+    position: relative;
+    right: 3%;
+    width: 28%;
+}
+
+#topbar #notification h3 {
+    display: inline-block;
+}
+
+#topbar #notification #slider{
+    overflow: visible;
+    position: relative;
+    top: 0.4em;
+    width: 3.5em;
+    height: 0.8em;
+    border-radius: 1em;
+    background: rgba(51, 204, 255, 0.5);
+    float: right;
+}
+
+#topbar #notification #sliderPosition {
+    /*background: #3f51b5;*/
+    background-color: lightgrey;
+    width: 25px;
+    height: 25px;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+#topbar #notification #sliderPosition.ng-enter {
+    animation: slider_animation 0.5s linear;
+    -webkit-animation: slider_animation 0.5s linear;
+}
+
+@keyframes slider_animation {
+    from { background-color: lightgrey; }
+    to { background-color: #3498db; }
+}
+
+@-webkit-keyframes slider_animation {
+    from { background-color: lightgrey; }
+    to { background-color: #3498db; }
+}
+
+#sidebar {
+    width: 25%;
+    height: 80%;
+    position: absolute;
+    top: 10%;
+    left: 0;
+    background-color: rgba(255,255,255,0.7);
+    overflow: auto;
+}
+
+#sidebar h3 {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px ridge lightgrey;
+    font-weight: bold;
+}
+
+#sidebar #usersOnline {
+    height: 90%;
+    width: 100%;
+}
+
+#sidebar #usersOnline h3 {
+    width: 75%;
+    margin: auto;
+    border-bottom: 1px solid lightgrey;
+    font-weight: 300;
+}
+
+#messageWindow {
+    width: 75%;
+    height: 80%;
+    float:right;
+    /*position: relative;*/
+    overflow-y: auto;
+}
+
+#messageWindow #allMessages {
+    position: relative;
+    width: 100%;
+    top: 100%;
+    float:right;
+    /*height:inherit;*/
+}
+
+#messageWindow #allMessages .balloon {
+    position: absolute;
+    bottom: 3%;
+    right: 10%;
+    background-color: rgba(255,255,255,0.7);
+    min-width: 20%;
+    max-width: 50%;
+    border-radius: 5px;
+    padding: 5px 10px;
+    word-wrap: break-word;
+}
+
+#messageWindow #allMessages .balloon ::after{
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    left: 100%;
+    width: 0;
+    border-width: 15px 15px 0 0;
+    border-style: solid;
+    border-color: rgba(255,255,255,0.4) transparent;
+    transform: rotate(270deg);
+}
+
+#messageWindow #allMessages .balloon h4{
+    font-weight: bold;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#bottombar {
+    width: 100%;
+    height: 10%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255,1);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#media{
+    width: 25%;
+    padding: 10px 0;
+    text-align: center;
+    display: inline-block
+}
+
+i {
+    color: #555;
+    margin: 0 5px;
+    width: 60px;
+    height: 40px;
+    padding: 5px;
+}
+
+i:hover {
+    background-color: #5dc2f1;
+    color: white;
+    /*width: 60px;*/
+    margin: 0 5px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#textbar {
+    position: relative;
+    width: 75%;
+    height: 100%;
+    float:right;
+    padding: 10px 20px;
+    background-color: #dfdfdf;
+    border-bottom-right-radius: 10px;
+}
+
+#textbar input[type='text'] {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    color: #444444;
+    padding-left: 10px;
+    line-height: 16px;
+}
+
+#textbar input[type='text']:focus {
+    outline: none;
+}
+
+#textbar ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #777777;
+    font-weight: bold;
+}
+#textbar :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #777777;
+    font-weight: bold;
+    opacity:  1;
+}
+#textbar ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #777777;
+    font-weight: bold;
+    opacity:  1;
+}
+#textbar :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #777777;
+    font-weight: bold;
+}
+
+@media screen and (min-width: 1400px) {
+    * {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 1085px) {
+    i {
+        padding: 5px 0;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 935px) {
+    i {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 785px) {
+    i {
+        width: 40px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    i {
+        width: 35px;
+    }
+    #media {
+        height: 20%;
+    }
+}
+
+:focus{
+    outline: none;
+}
+.slimScroll {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollBarContainer{
+    background-color: transparent;
+}
+.scrollBarContainer.animate .scroll{
+    transition: 2s opacity ease;
+    -ms-transition: 2s opacity ease;
+    opacity: 0;
+}
+.scrollBarContainer:hover .scroll{
+    opacity: 0.5;
+    transition: none;
+    -ms-transition: none;
+}
+
+.scroll-bar{
+    background-color: #7A8688;
+    border-radius: 10px;
+}

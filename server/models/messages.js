@@ -5,8 +5,7 @@ var messageSchema = new Schema({
     author: {type: String, required: true},
     body: {type: String, required: true},
     file: {type: String},
-    //post expires after 1 hour (6*60 seconds) just for testing
-    date: {type: Date, default: Date.now, expires: 6*60}
+    date: {type: Date, default: Date.now}
 });
 
 var Message = mongoose.model("Message", messageSchema);

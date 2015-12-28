@@ -15,7 +15,6 @@ exports.getOne = function(req, res){
         .exec(function(err, doc){
             if (err) res.send(err);
             res.send(doc);
-            console.log(doc);
     });
 };
 
@@ -37,36 +36,98 @@ exports.getAll = function(req, res){
         .exec(function(err, doc){
             if (err) res.send(err);
             res.send(doc);
-            console.log(doc);
     });
 };
 
 //------------------------------------------------------------------
 //------------------------------------------------------------------
+//OLD CREATE FUNCTION FOR GET REQUEST ON /CHAT, USING SOCKETS NOW
 
-exports.create = function(req,res){
+//exports.create = function(req,res){
+//    console.log("create controller");
+//    var message = new Message(req.body);
+//    message.save(function(err){
+//        if(err) {
+//            handleError(err);
+//            res.send(err);
+//        } else {
+//            console.log("message saved:");
+//            console.log(message);
+//            return res.send(message);
+//        }
+//    });
+//};
+
+exports.add = function(message, socket, io){
+
     console.log("create controller");
-    var message = new Message(req.body);
-    message.save(function(err){
-        if(err) {
-            handleError(err);
-            res.send(err);
-        } else {
-            console.log("message saved:");
-            console.log(message);
-            return res.send(message);
-        }
-    });
+
+    if(!checkMessage(message)) {
+        console.log("correct message");
+        var document = new Message(message);
+        document.save(function (err) {
+            if(err){
+                handleError(err);
+                console.log(err);
+            } else {
+                console.log("message saved");
+                io.sockets.emit("message", document);
+            }
+        });
+    } else {
+        console.log("incorrect message");
+        // don't use "error" as the name of the socket message,
+        // took me forever to find out why it wouldn't work
+        socket.emit("incorrect", "empty username and/or message");
+    }
 };
 
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 
+exports.delete = function(req,res) {
+    Message
+        .remove({}, function(err) {
+            if(err){
+                throw err;
+            } else {
+                console.log("documents deleted");
+                res.send("all documents deleted");
+            }
+        });
+};
+
+//------------------------------------------------------------------
+//------------------------------------------------------------------
+
+//function checkMessage(message){
+//    if(typeof message.author === 'undefined' || typeof message.body === 'undefined' || !message.body || !message.author) {
+//        console.log(message.author, message.body);
+//        return false;
+//    } else {
+//        return true;
+//    }
+//}
+
+// same function as above, except this function checks the message the other way around
+// (it returns false if the message is correct and true if message is incorrect.)
+// When calling this function instead of the above one, use ! for the output, for example:
+// if(!checkMessage(myMessage)){ // correct } else { //incorrect }
+//    ^ important
+function checkMessage(message){
+    return !message.author ||
+        !message.body ||
+        typeof message.author !== 'String' ||
+        typeof message.body !== 'String';
+}
+
+// this function deletes some unnecessary info from the error object to make it more readable
 function handleError(err){
     delete err.stack;
     for(var prop in err.errors){
-        console.log(prop);
-        delete err.errors[prop].stack;
+        if(err.errors.hasOwnProperty(prop)) {
+            delete err.errors[prop].stack;
+        }
     }
     return err;
 }
