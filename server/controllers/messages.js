@@ -101,6 +101,7 @@ exports.delete = function(req,res) {
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 
+// this function validates the given message
 function checkMessage(message){
     if(!message.body || !message.author || typeof message.author !== 'string' || typeof message.body !== 'string'){
         return false;
@@ -108,18 +109,6 @@ function checkMessage(message){
         return true;
     }
 }
-
-// same function as above, except this function checks the message the other way around
-// (it returns false if the message is correct and true if message is incorrect.)
-// When calling this function instead of the above one, use ! for the output, for example:
-// if(!checkMessage(myMessage)){ // correct } else { //incorrect }
-//    ^ important
-//function checkMessage(message){
-//    return !message.author ||
-//        !message.body ||
-//        typeof message.author !== 'String' ||
-//        typeof message.body !== 'String';
-//}
 
 // this function deletes some unnecessary info from the error object to make it more readable
 function handleError(err){
