@@ -1,0 +1,17 @@
+#deleteWindow {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+#deleteWindow p {
+    position: relative;
+    top: 30%;
+    font-size: 6em;
+}

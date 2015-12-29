@@ -16,7 +16,7 @@ chatApp.config(function($routeProvider, $locationProvider) {
         })
         .when("/delete", {
             controller: 'deleteController',
-            templateUrl: "templates/404.html"
+            templateUrl: "templates/delete.html"
         })
         .otherwise({
             //resolve: { "getUrl": function() { return window.location.href}},

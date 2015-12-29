@@ -8,7 +8,7 @@
             <div id="notification">
                 <h3>Enable notifications</h3>
                 <div id="slider">
-                    <div id="sliderPosition" ng-click="sliderChange()"></div>
+                    <div id="sliderPosition" ng-class="{foo: bar}" ng-click="changeSlider()"></div>
                 </div>
             </div>
         </div>
@@ -23,20 +23,26 @@
         </div>
     </div>
 
-    <div id="messageWindow">
-        <!--<ul>-->
-            <!--<li ng-repeat="message in messages | orderBy: 'date'">-->
-                <!--<p>{{message.body}}</p>-->
-            <!--</li>-->
-        <!--</ul>-->
+    <div id="messageWindow" class="slimScroll">
         <div id="allMessages">
-            <div class="balloon"
-                 ng-repeat="message in messages | orderBy: 'date'"
-                 ng-style="{bottom: 60 * $index + 10 + 'px'}">
-                <h4>{{message.author}}</h4>
-                <p>{{message.body}}</p>
-            </div>
+            <ol>
+                <li ng-repeat="message in messages | orderBy: 'date'">
+                    <div ng-class=message.self>
+                        <div class="balloon">
+                            <h4>{{message.author}}</h4>
+                            <span>{{message.date}}</span>
+                            <p>{{message.body}}</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
         </div>
+    </div>
+    <div id="livetyping" ng-show="userstyping.length">
+        <span ng-repeat="user in userstyping track by $index">
+            {{user}}
+        </span>
+        <span class="dotanimate"> is typing <span>.</span> <span>.</span> <span>.</span></span>
     </div>
 
     <div id="bottombar">
@@ -47,7 +53,7 @@
             <input type="file" id="target" hidden fileread="file" />
         </div>
         <div id="textbar">
-            <input type="text" placeholder="Write a message..." ng-keypress="send($event)" ng-model="message">
+            <input type="text" placeholder="Write a message..." ng-keyup="send($event)" ng-model="message">
         </div>
     </div>
 
