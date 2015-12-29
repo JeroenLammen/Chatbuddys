@@ -62,7 +62,8 @@ exports.add = function(message, socket, io){
 
     console.log("create controller");
 
-    if(!checkMessage(message)) {
+    var correctMessage = checkMessage(message);
+    if(correctMessage) {
         console.log("correct message");
         var document = new Message(message);
         document.save(function (err) {
@@ -100,26 +101,25 @@ exports.delete = function(req,res) {
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 
-//function checkMessage(message){
-//    if(typeof message.author === 'undefined' || typeof message.body === 'undefined' || !message.body || !message.author) {
-//        console.log(message.author, message.body);
-//        return false;
-//    } else {
-//        return true;
-//    }
-//}
+function checkMessage(message){
+    if(!message.body || !message.author || typeof message.author !== 'string' || typeof message.body !== 'string'){
+        return false;
+    } else {
+        return true;
+    }
+}
 
 // same function as above, except this function checks the message the other way around
 // (it returns false if the message is correct and true if message is incorrect.)
 // When calling this function instead of the above one, use ! for the output, for example:
 // if(!checkMessage(myMessage)){ // correct } else { //incorrect }
 //    ^ important
-function checkMessage(message){
-    return !message.author ||
-        !message.body ||
-        typeof message.author !== 'String' ||
-        typeof message.body !== 'String';
-}
+//function checkMessage(message){
+//    return !message.author ||
+//        !message.body ||
+//        typeof message.author !== 'String' ||
+//        typeof message.body !== 'String';
+//}
 
 // this function deletes some unnecessary info from the error object to make it more readable
 function handleError(err){
