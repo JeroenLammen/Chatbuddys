@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var messageSchema = new Schema({
+    authorID: {type: String, required: true},
     author: {type: String, required: true},
     body: {type: String, required: true},
     file: {type: String},

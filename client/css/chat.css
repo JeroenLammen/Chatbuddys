@@ -10,6 +10,11 @@
 
 #chatWrapper {
     width: 80%;
+    height: 95%;
+    /*max-width: 1400px;*/
+    /*max-height: 1000px;*/
+    /*min-height: 600px;*/
+    /*min-width: 1000px;*/
     position: absolute;
     margin: auto;
     left: 0;
@@ -20,6 +25,7 @@
     border-radius: 10px;
     z-index: 10;
     color: black;
+    /*box-shadow: #333 0px 0px 5px 1px;*/
 }
 
 #topbar{
@@ -131,10 +137,40 @@
     font-weight: 300;
 }
 
+#sidebar #usersOnline h3::before {
+    content: '';
+    display: block;
+    width: 0.5em;
+    height: 0.5em;
+    background-color: limegreen;
+    border-radius: 50%;
+    position: absolute;
+    top: 16px;
+    box-shadow: #295629 1px 1px 1px;
+    animation: onlineblink;
+    animation-duration: 1.4s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+@keyframes onlineblink {
+    0% {
+        opacity: .2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: .2;
+    }
+}
+
 #messageWindow {
     width: 75%;
     height: 80%;
     float:right;
+    overflow: hidden;
+    /*overflow-y: auto;*/
     /*position: relative;*/
 }
 
@@ -189,7 +225,7 @@
     font-style: italic;
     font-size: 0.8em;
     float: right;
-    height: 0px;
+    height: 0;
     position: relative;
     bottom: 20px;
 }
@@ -311,7 +347,7 @@ i:hover {
     width: 75%;
     height: 100%;
     float:right;
-    padding: 10px 20px;
+    padding: 1% 2%;
     background-color: #dfdfdf;
     border-bottom-right-radius: 10px;
 }
@@ -399,13 +435,11 @@ i:hover {
 }
 .scrollBarContainer.animate .scroll{
     transition: 2s opacity ease;
-    -ms-transition: 2s opacity ease;
     opacity: 0;
 }
 .scrollBarContainer:hover .scroll{
     opacity: 0.5;
     transition: none;
-    -ms-transition: none;
 }
 
 .scroll-bar{

@@ -8,7 +8,7 @@
             <div id="notification">
                 <h3>Enable notifications</h3>
                 <div id="slider">
-                    <div id="sliderPosition" ng-class="{foo: bar}" ng-click="changeSlider()"></div>
+                    <div id="sliderPosition" ng-class="{foo: enableNotifications}" ng-click="changeSlider()"></div>
                 </div>
             </div>
         </div>
@@ -17,8 +17,8 @@
     <div id="sidebar">
         <h3>Online:</h3>
         <div id="usersOnline" class="slimScroll">
-            <div ng-repeat="user in usersOnline track by $index">
-                <h3>{{user}}</h3>
+            <div ng-repeat="user in usersOnline | orderBy: 'username'">
+                <span class="loginAnimate"></span><h3>{{user.username}}</h3>
             </div>
         </div>
     </div>
@@ -26,23 +26,27 @@
     <div id="messageWindow" class="slimScroll">
         <div id="allMessages">
             <ol>
-                <li ng-repeat="message in messages | orderBy: 'date'">
-                    <div ng-class=message.self>
+                <li ng-repeat="message in messages | orderBy: date: true">
+                    <div ng-class=message.from>
                         <div class="balloon">
                             <h4>{{message.author}}</h4>
                             <span>{{message.date}}</span>
-                            <p>{{message.body}}</p>
+                            <p ng-bind-html="trustAsHtml(message.body)">{{message.body}}</p>
                         </div>
                     </div>
                 </li>
             </ol>
         </div>
     </div>
-    <div id="livetyping" ng-show="userstyping.length">
-        <span ng-repeat="user in userstyping track by $index">
-            {{user}}
+    <div id="livetyping" ng-show="usersTyping.length">
+        <span ng-repeat="user in usersTyping">
+            {{user.username}}{{$last ? '' : ($index==usersTyping.length-2) ? ' and ' : ', '}}
         </span>
-        <span class="dotanimate"> is typing <span>.</span> <span>.</span> <span>.</span></span>
+        <span ng-show="usersTyping.length === 1">is typing</span>
+        <span ng-show="usersTyping.length > 1">are typing</span>
+        <span class="dotanimate">
+            <span>.</span> <span>.</span> <span>.</span>
+        </span>
     </div>
 
     <div id="bottombar">
@@ -50,10 +54,10 @@
             <i ng-class="fa_icon" ng-click="requestMicrophone()"></i>
             <i class="fa fa-video-camera fa-2x" ng-click="requestCamera()"></i>
             <i class="fa fa-paperclip fa-2x" ng-click="openFile()"></i>
-            <input type="file" id="target" hidden fileread="file" />
+            <input type="file" id="target" hidden onchange="handleFiles(this.files)">
         </div>
         <div id="textbar">
-            <input type="text" placeholder="Write a message..." ng-keyup="send($event)" ng-model="message">
+            <input type="text" placeholder="Write a message..." ng-keyup="update($event)" ng-model="message">
         </div>
     </div>
 
