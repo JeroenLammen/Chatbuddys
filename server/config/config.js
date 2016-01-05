@@ -1,7 +1,7 @@
 exports.database = {
-    server: 'server',
-    port: 0000,
-    database: 'database',
+    server: 'server5.tezzt.nl',
+    port: 27017,
+    database: 'S4DHangouts',
     getURL: function(){
         return 'mongodb://' + this.server + ':' + this.port + '/' + this.database;
     }

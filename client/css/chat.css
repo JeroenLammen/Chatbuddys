@@ -48,6 +48,10 @@
     display: inline-block;
 }
 
+#logout {
+    cursor: pointer;
+}
+
 #topbar #notification {
     float: right;
     padding: 10px 0;
@@ -324,7 +328,7 @@ video {
     display: inline-block
 }
 
-i {
+#media i {
     color: #555;
     margin: 0 5px;
     width: 60px;
@@ -332,7 +336,7 @@ i {
     padding: 5px;
 }
 
-i:hover {
+#media i:hover {
     background-color: #5dc2f1;
     color: white;
     /*width: 60px;*/
