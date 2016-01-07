@@ -75,6 +75,11 @@
     float: right;
 }
 
+#topbar #notification .random {
+    background-color: black;
+    width: 500px;
+}
+
 #topbar #notification #sliderPosition {
     /*background: #3f51b5;*/
     background-color: lightgrey;
@@ -173,8 +178,8 @@
     width: 75%;
     height: 80%;
     float:right;
-    overflow: hidden;
-    /*overflow-y: auto;*/
+    /*overflow: hidden;*/
+    overflow-y: auto;
     /*position: relative;*/
 }
 
@@ -216,6 +221,11 @@
     border-radius: 5px;
     padding: 5px 10px;
     word-wrap: break-word;
+}
+
+#messageWindow #allMessages .self .balloon img {
+    transform: scale(0.4);
+    /*position: absolute;*/
 }
 
 #messageWindow #allMessages .self .balloon::after{
@@ -366,19 +376,32 @@ video {
     border-bottom-right-radius: 10px;
 }
 
-#textbar input[type='text'] {
-    width: 100%;
-    height: 100%;
+#textbar #openEmoji {
     position: relative;
+    top: 10%;
+    right: 0.5%;
+}
+
+#textbar #openEmoji:hover {
+    cursor: pointer;
+    color: gray;
+}
+
+#textbar #messageField {
+    width: 95%;
+    height: 100%;
+    /*position: relative;*/
     font-size: 16px;
     border-radius: 5px;
     border: none;
     color: #444444;
-    padding-left: 10px;
+    padding: 10px;
+    background-color: white;
     line-height: 16px;
+    float:right;
 }
 
-#textbar input[type='text']:focus {
+#textbar #messageField:focus {
     outline: none;
 }
 
