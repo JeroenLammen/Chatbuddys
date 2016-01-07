@@ -79,6 +79,16 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }
     };
 
+    $scope.logout = function() {
+        var cookies = $cookies.getAll();
+
+        angular.forEach(cookies, function (v, k) {
+            $cookies.remove(k);
+        });
+
+        location.reload();
+    };
+
     //USERS WHO ARE CURRENTLY TYPING A MESSAGE
     $scope.usersTyping = [];
 
@@ -260,32 +270,32 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     var messageSlimScroll;
 
     //SCROLLBAR
-    window.onload = function(){
-        if(!navigator.userAgent.match('Macintosh')){
-            var element = document.querySelectorAll('.slimScroll');
-            // Apply slim scroll plugin
-            messageSlimScroll = new slimScroll(element[1], {
-                'wrapperClass': 'scroll-wrap',
-                'scrollBarContainerClass': 'scrollBarContainer',
-                //'scrollBarContainerSpecialClass': 'animate',
-                'scrollBarClass': 'scroll-bar',
-                'keepFocus': true
-            });
-
-            // resize example
-            // To make the resizing work, set the height of the container in PERCENTAGE
-            window.onresize = function(){
-                one.resetValues();
-            }
-        } else {
-            document.write("For Mac users, this custom slimscroll styles will not be applied");
-        }
-    };
+    //window.onload = function(){
+    //    if(!navigator.userAgent.match('Macintosh')){
+    //        var element = document.querySelectorAll('.slimScroll');
+    //        // Apply slim scroll plugin
+    //        messageSlimScroll = new slimScroll(element[1], {
+    //            'wrapperClass': 'scroll-wrap',
+    //            'scrollBarContainerClass': 'scrollBarContainer',
+    //            //'scrollBarContainerSpecialClass': 'animate',
+    //            'scrollBarClass': 'scroll-bar',
+    //            'keepFocus': true
+    //        });
+    //
+    //        // resize example
+    //        // To make the resizing work, set the height of the container in PERCENTAGE
+    //        window.onresize = function(){
+    //            one.resetValues();
+    //        }
+    //    } else {
+    //        document.write("For Mac users, this custom slimscroll styles will not be applied");
+    //    }
+    //};
 
     //slimscroll won't load without a timeout
-    setTimeout(function(){
-        window.onload();
-    },100);
+    //setTimeout(function(){
+    //    window.onload();
+    //},100);
 
 //--------------------------------------------------------------------------------------------
 //  WEBRTC

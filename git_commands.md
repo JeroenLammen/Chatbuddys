@@ -124,6 +124,18 @@ voorbeeld:
 
 `git pull origin master`
 
+### Pull ongedaan maken
+
+Mocht er na een pull request iets fout zijn gegaan (bestand of code is verdwenen), dan kan je je project terugzetten naar de versie voor het pull request. Voer eerst dit uit:
+
+`git reflog`
+
+Je krijgt dan een log te zien van gebeurtenissen. Zoek het id (eerst kolom) op waar je het pull request hebt gedaan, en voer vervolgens het volgende commando uit:
+
+`git reset --hard ID`
+
+waar ID natuurlijk het id is uit de log
+
 ### Branches
 
 **Let op!**
