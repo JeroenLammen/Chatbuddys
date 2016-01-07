@@ -399,7 +399,7 @@
 
     EmojiMenu.prototype.onItemSelected = function(group, emoji) {
         this.emojiarea.insert(group, emoji);
-        this.hide();
+        //this.hide();
     };
 
     EmojiMenu.prototype.load = function() {

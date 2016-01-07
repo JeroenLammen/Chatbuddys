@@ -1,5 +1,5 @@
 var chatApp = angular.module("chatApp",
-    ["ngRoute", "ngCookies", "ngAnimate", 'angular-loading-bar', 'file-model']
+    ["ngRoute", "ngCookies", "ngAnimate", 'angular-loading-bar', 'file-model', 'ngSanitize']
 );
 
 chatApp.config(function($routeProvider, $locationProvider) {

@@ -48,7 +48,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     //EXPERIMENTAL, RENDER HTML TAGS IN MESSAGE
     $scope.trustAsHtml = $sce.trustAsHtml;
 
-    //$('#messageField').emojiarea();
+    $('#messageField').emojiarea({button: '#openEmoji'});
 
     //GET ALL MESSAGES
     $http.get("/chat")
@@ -59,6 +59,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                 });
             },1);
             for(var i =0; i<messages.length; i++){
+                //messages[i].body = $sce.trustAsHtml(messages[i].body);
+                //messages[i].body = messages[i].body.linkify();
                 messages[i].date = setDate(messages[i].date);
                 if(messages[i].authorID === $cookies.get("ID")){
                     messages[i].from = "self";
@@ -66,6 +68,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                     messages[i].from = "other";
                 }
                 $scope.messages.push(messages[i]);
+                //emojify.run();
             }
         })
         .error(function(err){
@@ -74,7 +77,11 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
 
     //MESSAGE INPUT EVENTS
     $scope.update = function($event) {
+        setTimeout( function() {
+            console.log($scope.message);
+        }, 100);
         if($event.keyCode === 13) {
+            $event.preventDefault();
             $scope.sendMessage();
         }
         if($scope.message){
@@ -119,14 +126,15 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     $scope.sendMessage = function(){
         console.log($scope.selectedFile);
         $scope.newMessage = {
-            body: $scope.message.linkify(),
+            body: $scope.message,
             file: $scope.selectedFile
         };
         $scope.message = '';
+        $("#textbar").children("#messageField").empty();
         $scope.selectedFile = null;
         console.log("EMPTIED");
         console.log($scope.selectedFile);
-        $("#textbar").children("input").focus();
+        $("#textbar").children("#messageField").focus();
         socket.emit("sendMessage", $scope.newMessage);
     };
 
@@ -143,6 +151,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         //$(".scroll-wrap > #allMessages").unwrap();
         //$(".scrollBarContainer").remove();
 
+        //message.body = message.body.linkify();
+        //message.body = $sce.trustAsHtml(message.body);
         message.date = setDate(message.date);
         console.log("authorID: " + message.authorID);
         console.log("socketID: " + socket.id());
@@ -154,11 +164,12 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         $scope.messages.unshift(message);
 
         //messageSlimScroll.resetValues();
+
         setTimeout(function(){
             $('#messageWindow').mCustomScrollbar('scrollTo','bottom', {
                 scrollInertia:0
             });
-        },1);
+
 
         if(!tabActive) {
             createNotification(message, $scope.enableNotifications);
