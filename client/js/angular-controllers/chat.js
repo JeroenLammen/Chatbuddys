@@ -53,6 +53,11 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     //GET ALL MESSAGES
     $http.get("/chat")
         .success(function(messages){
+            setTimeout(function(){
+                $('#messageWindow').mCustomScrollbar('scrollTo','bottom', {
+                    scrollInertia:0
+                });
+            },1);
             for(var i =0; i<messages.length; i++){
                 messages[i].date = setDate(messages[i].date);
                 if(messages[i].authorID === $cookies.get("ID")){
@@ -149,11 +154,11 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         $scope.messages.unshift(message);
 
         //messageSlimScroll.resetValues();
-
-        //setTimeout(function(){
-        //    var elem = document.getElementById('messageWindow');
-        //    elem.scrollTop = elem.scrollHeight;
-        //},100);
+        setTimeout(function(){
+            $('#messageWindow').mCustomScrollbar('scrollTo','bottom', {
+                scrollInertia:0
+            });
+        },1);
 
         if(!tabActive) {
             createNotification(message, $scope.enableNotifications);
