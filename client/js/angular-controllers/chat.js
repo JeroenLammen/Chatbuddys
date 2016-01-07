@@ -164,12 +164,11 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         $scope.messages.unshift(message);
 
         //messageSlimScroll.resetValues();
-
-        setTimeout(function(){
-            $('#messageWindow').mCustomScrollbar('scrollTo','bottom', {
-                scrollInertia:0
+        setTimeout(function() {
+            $('#messageWindow').mCustomScrollbar('scrollTo', 'bottom', {
+                scrollInertia: 0
             });
-
+        },0);
 
         if(!tabActive) {
             createNotification(message, $scope.enableNotifications);
