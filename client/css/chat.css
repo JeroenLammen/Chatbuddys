@@ -140,13 +140,13 @@
 #sidebar #usersOnline h3::before {
     content: '';
     display: block;
-    width: 0.5em;
-    height: 0.5em;
+    width: 0.65em;
+    height: 0.65em;
     background-color: limegreen;
     border-radius: 50%;
     position: absolute;
     top: 16px;
-    box-shadow: #295629 1px 1px 1px;
+    /*box-shadow: #295629 1px 1px 1px;*/
     animation: onlineblink;
     animation-duration: 1.4s;
     animation-iteration-count: infinite;
@@ -184,6 +184,16 @@
 
 #messageWindow #allMessages ol {
     list-style-type:none;
+}
+
+#messageWindow #allMessages ol li .balloon a {
+    color: #039be5;
+    font-weight: 500;
+}
+
+#messageWindow #allMessages ol li .balloon a:visited {
+    color: #039be5;
+    font-weight: 500;
 }
 
 #messageWindow #allMessages .self {

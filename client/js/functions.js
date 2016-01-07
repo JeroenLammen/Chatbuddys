@@ -16,7 +16,9 @@ function setDate(date) {
 
 function createNotification(message, enableNotifications){
     if(Notification.permission === "granted") {
+        console.log("granted");
         if(enableNotifications){
+            console.log("enabled");
             var options = {
                 body: message.body,
                 icon: 'http://www.clipartbest.com/cliparts/dT7/eGE/dT7eGEonc.png'
@@ -34,4 +36,23 @@ function getIndexOfObject(array, property, value) {
         }
     }
     return -1;
+}
+
+function confirmupload(files) {
+    console.log(files);
+    swal({
+        title: 'Upload?',
+        text: files[0].name,
+        type: 'info',
+        animation: 'slide-from-top',
+        showCancelButton: true,
+        closeOnConfirm: true
+    }, function(){
+        angular.element('ng-view').scope().upload();
+        //angular.element('ng-view').scope().sendMessage();
+        //swal("ok!", "pfftst", "success");
+    }, function(){
+        //$('#target').val = null;
+        //console.log("canceled!");
+    });
 }

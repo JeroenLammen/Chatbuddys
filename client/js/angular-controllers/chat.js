@@ -48,6 +48,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     //EXPERIMENTAL, RENDER HTML TAGS IN MESSAGE
     $scope.trustAsHtml = $sce.trustAsHtml;
 
+    //$('#messageField').emojiarea();
+
     //GET ALL MESSAGES
     $http.get("/chat")
         .success(function(messages){
@@ -96,20 +98,26 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }
     });
 
+    $scope.selectedFile = null;
+
     //SEND MESSAGE
     $scope.sendMessage = function(){
+        console.log($scope.selectedFile);
         $scope.newMessage = {
-            body: $scope.message,
-            file: $scope.file
+            body: $scope.message.linkify(),
+            file: $scope.selectedFile
         };
         $scope.message = '';
+        $scope.selectedFile = null;
+        console.log("EMPTIED");
+        console.log($scope.selectedFile);
         $("#textbar").children("input").focus();
         socket.emit("sendMessage", $scope.newMessage);
     };
 
     //SENT MESSAGE IS INCORRECT
     socket.on("incorrectMessage", function(err){
-        swal("error", err, "error");
+        //swal("error", err, "error");
     });
 
     //GET NEW MESSAGE
@@ -128,9 +136,9 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         } else {
             message.from = "other";
         }
-        $scope.messages.push(message);
+        $scope.messages.unshift(message);
 
-        messageSlimScroll.resetValues();
+        //messageSlimScroll.resetValues();
 
         //setTimeout(function(){
         //    var elem = document.getElementById('messageWindow');
@@ -157,16 +165,31 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     var selectedFile = document.getElementById('target').files[0];
     console.log(selectedFile);
 
-    //TODO: file upload not done yet
     //FILE UPLOAD
     $scope.openFile = function() {
         $("#target").click();
     };
 
 
-    $scope.handleFiles = function handleFiles(files) {
-        console.log("changed");
-        console.log(files);
+    $scope.upload = function(){
+        var selectedFile = $('#target').get(0).files[0];
+        console.log(selectedFile);
+
+        var fd = new FormData();
+        fd.append('file', selectedFile);
+        fd.append("id", $cookies.get("ID"));
+
+        console.log("uploading....");
+        $http.post("/uploads", fd, {
+            transformRequest: angular.identity,
+            headers: {"Content-Type": undefined}
+        })
+            .success(function(data){
+                console.log(data);
+            })
+            .error(function(error){
+                console.log("error!");
+            });
     };
 
     var tabActive = true;

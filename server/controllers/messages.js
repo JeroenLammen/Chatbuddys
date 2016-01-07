@@ -41,22 +41,6 @@ exports.getAll = function(req, res){
 
 //------------------------------------------------------------------
 //------------------------------------------------------------------
-//OLD CREATE FUNCTION FOR GET REQUEST ON /CHAT, USING SOCKETS NOW
-
-//exports.create = function(req,res){
-//    console.log("create controller");
-//    var message = new Message(req.body);
-//    message.save(function(err){
-//        if(err) {
-//            handleError(err);
-//            res.send(err);
-//        } else {
-//            console.log("message saved:");
-//            console.log(message);
-//            return res.send(message);
-//        }
-//    });
-//};
 
 exports.add = function(message, socket, io){
 
@@ -86,6 +70,25 @@ exports.add = function(message, socket, io){
     }
 };
 
+exports.addFile = function(message, req, res, io) {
+
+    var correctmessage = checkFile(message);
+    if(correctmessage) {
+        var document = new Message(message);
+        document.save(function (err) {
+            if(err){
+                handleError(err);
+            } else {
+                io.sockets.emit("message", document);
+                res.send("uploaded!")
+            }
+        })
+    } else {
+        res.send("incorrect message");
+    }
+
+};
+
 //------------------------------------------------------------------
 //------------------------------------------------------------------
 
@@ -106,7 +109,25 @@ exports.delete = function(req,res) {
 
 // this function validates the given message
 function checkMessage(message){
-    if(!message.body || !message.author || typeof message.author !== 'string' || typeof message.body !== 'string'){
+    if(
+        !message.body ||
+        !message.author ||
+        typeof message.author !== 'string' ||
+        typeof message.body !== 'string'
+    ) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkFile(message){
+    if(
+        !message.filePath ||
+        !message.author ||
+        typeof message.author !== 'string' ||
+        typeof message.filePath !== 'string'
+    ) {
         return false;
     } else {
         return true;

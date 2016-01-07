@@ -31,7 +31,8 @@
                         <div class="balloon">
                             <h4>{{message.author}}</h4>
                             <span>{{message.date}}</span>
-                            <p ng-bind-html="trustAsHtml(message.body)">{{message.body}}</p>
+                            <p ng-show="message.body" ng-bind-html="trustAsHtml(message.body)">{{message.body}}</p>
+                            <a ng-show="message.filePath" ng-href="{{message.filePath}}" target="_self" download>{{message.fileName}}</a>
                         </div>
                     </div>
                 </li>
@@ -54,10 +55,10 @@
             <i ng-class="fa_icon" ng-click="requestMicrophone()"></i>
             <i class="fa fa-video-camera fa-2x" ng-click="requestCamera()"></i>
             <i class="fa fa-paperclip fa-2x" ng-click="openFile()"></i>
-            <input type="file" id="target" hidden onchange="handleFiles(this.files)">
+            <input type="file" id="target" hidden onchange="confirmupload(this.files)" file-model="selectedFile">
         </div>
         <div id="textbar">
-            <input type="text" placeholder="Write a message..." ng-keyup="update($event)" ng-model="message">
+            <input type="text" id="messageField" placeholder="Write a message..." ng-keyup="update($event)" ng-model="message">
         </div>
     </div>
 

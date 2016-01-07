@@ -1,4 +1,6 @@
-var chatApp = angular.module("chatApp", ["ngRoute", "ngCookies", "ngAnimate"]);
+var chatApp = angular.module("chatApp",
+    ["ngRoute", "ngCookies", "ngAnimate", 'angular-loading-bar', 'file-model']
+);
 
 chatApp.config(function($routeProvider, $locationProvider) {
     $routeProvider

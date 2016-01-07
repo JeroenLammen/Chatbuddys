@@ -1,4 +1,4 @@
-module.exports = function(io) {
+module.exports = function(io, app, upload) {
 
     var controllers = require("../controllers/messages.js");
     var usersOnline = [];
@@ -34,13 +34,12 @@ module.exports = function(io) {
     //----------------------------------------------------------------
 
         socket.on("sendMessage", function(message){
+
             var index = getIndexOfObject(usersOnline, "socketID", socket.id);
             message.author = usersOnline[index].username;
             message.authorID = usersOnline[index].userID;
             message.date = new Date();
-            console.log("authorID: " + message.authorID);
-            console.log("socketID: " + socket.id);
-            console.log("----- " + message.body + " -----");
+
             controllers.add(message, socket, io);
         });
 
@@ -54,8 +53,22 @@ module.exports = function(io) {
             socket.broadcast.emit("userStoppedTyping", usersOnline[index]);
         });
     });
-};
 
+    app.post('/uploads', upload.single('file'), function (req, res, next) {
+        var index = getIndexOfObject(usersOnline, "userID", req.body.id);
+        var message = {};
+        message.author = usersOnline[index].username;
+        message.authorID = usersOnline[index].userID;
+        message.body = 'File:';
+        message.filePath = req.file.destination + req.file.originalname;
+        message.fileName = req.file.originalname;
+        message.date = new Date();
+        console.log(req.file);
+        controllers.addFile(message, req, res, io);
+    });
+
+
+};
 
 function getIndexOfObject(array, property, value) {
     for(var i = 0; i < array.length; i++) {
