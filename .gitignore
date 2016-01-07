@@ -1,6 +1,7 @@
 .idea/
 server/node_modules/
 server/config/
+server/uploads/*
 .DS_Store
 client/.DS_Store
 client/libraries/.DS_Store
