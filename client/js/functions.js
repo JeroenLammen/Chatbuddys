@@ -29,18 +29,20 @@ function createNotification(message, enableNotifications){
     }
 }
 
+var titleTimeout;
 function changeTitle(message, tabActive) {
     console.log(message );
     document.title = message.author + ' zegt: '+message.body + "...";
-    setTimeout(function() {
+    titleTimeout = setTimeout(function() {
         document.title = "Chatbuddy's";
         if (!tabActive) {
             document.title = "Chatbuddy's | new message(s)" ;
         }
-    },5000);
+    },5000);   
 }
 
 function removeTitle() {
+    clearTimeout(titleTimeout);
     document.title = "Chatbuddy's";
 }
 
