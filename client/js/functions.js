@@ -29,6 +29,21 @@ function createNotification(message, enableNotifications){
     }
 }
 
+function changeTitle(message, tabActive) {
+    console.log(message );
+    document.title = message.author + ' zegt: '+message.body + "...";
+    setTimeout(function() {
+        document.title = "Chatbuddy's";
+        if (!tabActive) {
+            document.title = "Chatbuddy's | new message(s)" ;
+        }
+    },5000);
+}
+
+function removeTitle() {
+    document.title = "Chatbuddy's";
+}
+
 function getIndexOfObject(array, property, value) {
     for(var i = 0; i < array.length; i++) {
         if (array[i][property] === value) {

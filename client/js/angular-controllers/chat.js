@@ -172,6 +172,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         },0);
 
         if(!tabActive) {
+            changeTitle(message, tabActive);
             createNotification(message, $scope.enableNotifications);
         }
 
@@ -241,6 +242,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             }
         }
         $(this).data("prevType", e.type);
+        removeTitle();
     });
 
     //REQUEST, ENABLE AND DISABLE NOTIFICATIONS
