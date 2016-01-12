@@ -218,6 +218,12 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             });
     };
 
+    $scope.preventEnter = function($event) {
+        if($event.keyCode === 13) {
+            $event.preventDefault();
+        }
+    };
+
     var tabActive = true;
 
     $(window).on("blur focus", function(e) {

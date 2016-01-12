@@ -60,7 +60,7 @@
         <div id="textbar">
             <ul>
                 <li><div class="balletje" id="verzend"><i class="fa fa-smile-o" id="openEmoji"></i></div></li>
-                <li class="talkbox"><div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-model="message"></div></li>
+                <li class="talkbox"><div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-keydown="preventEnter($event)" ng-model="message"></div></li>
                 <li><div class="balletje" id="bellen"><i class="fa fa-phone" ng-click="requestMicrophone()"></i></div></li>
                 <li><div class="balletje" id="bijlage"><i class="fa fa-paperclip" ng-click="openFile()"></i></div></li>
             </ul>
