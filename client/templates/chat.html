@@ -6,16 +6,16 @@
         <div id="info">
             <h1>{{username}} <span id="logout" ng-click="logout()"><i class="fa fa-lock"></i></span></h1>
             <div id="notification">
-                <h3>Enable notifications</h3>
+                <h3>Notificaties</h3>
                 <div id="slider" ng-class="{random: enableNotifications}">
                     <div id="sliderPosition" ng-class="{foo: enableNotifications}" ng-click="changeSlider()"></div>
                 </div>
             </div>
         </div>
     </div>
-
+<section id="midwrapper">
     <div id="sidebar">
-        <h3>Online:</h3>
+        <h3>Beschikbare chatbuddys</h3>
         <div id="usersOnline" class="slimScroll">
             <div ng-repeat="user in usersOnline | orderBy: 'username'">
                 <span class="loginAnimate"></span><h3>{{user.username}}</h3>
@@ -30,7 +30,7 @@
                     <div ng-class=message.from>
                         <div class="balloon">
                             <h4>{{message.author}}</h4>
-                            <span class="messageDate">{{message.date}}</span>
+                            <span class="messageDate">{{message.date}}</span><div class="clr"></div>
                             <span ng-show="message.body" ng-bind-html="trustAsHtml(message.body)">{{message.body}}</span>
                             <a ng-show="message.filePath" ng-href="{{message.filePath}}" target="_self" download>{{message.fileName}}</a>
                         </div>
@@ -39,6 +39,7 @@
             </ol>
         </div>
     </div>
+</section>
     <div id="livetyping" ng-show="usersTyping.length">
         <span ng-repeat="user in usersTyping">
             {{user.username}}{{$last ? '' : ($index==usersTyping.length-2) ? ' and ' : ', '}}
@@ -52,16 +53,19 @@
 
     <div id="bottombar">
         <div id="media">
-            <i ng-class="fa_icon" ng-click="requestMicrophone()"></i>
-            <i class="fa fa-video-camera fa-2x" ng-click="requestCamera()"></i>
-            <i class="fa fa-paperclip fa-2x" ng-click="openFile()"></i>
-            <input type="file" id="target" hidden onchange="confirmupload(this.files)" file-model="selectedFile">
+<Br>
+            <!--<i class="fa fa-gear"></i><h2>Opties</h2>-->
+            <input type="file" id="target" hidden onchange="handleFiles(this.files)">
         </div>
         <div id="textbar">
-            <i class="fa fa-smile-o fa-2x" id="openEmoji"></i>
-            <div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-model="message"></div>
-            <!--<input type="text" id="messageField" placeholder="Write a message..." ng-keyup="update($event)" ng-model="message">-->
+            <ul>
+                <li><div class="balletje" id="verzend"><i class="fa fa-smile-o" id="openEmoji"></i></div></li>
+                <li class="talkbox"><div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-model="message"></div></li>
+                <li><div class="balletje" id="bellen"><i class="fa fa-phone" ng-click="requestMicrophone()"></i></div></li>
+                <li><div class="balletje" id="bijlage"><i class="fa fa-paperclip" ng-click="openFile()"></i></div></li>
+            </ul>
         </div>
+
     </div>
 
 </div>

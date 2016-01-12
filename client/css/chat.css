@@ -1,3 +1,5 @@
+html, body {margin:0;padding:0;height:100%;}
+
 .backgroundLogo {
     width: 20%;
     position: absolute;
@@ -8,6 +10,10 @@
     bottom: 0;
 }
 
+.clr {
+	clear: both;
+}
+
 #chatWrapper {
     width: 80%;
     height: 95%;
@@ -15,11 +21,11 @@
     /*max-height: 1000px;*/
     /*min-height: 600px;*/
     /*min-width: 1000px;*/
-    position: absolute;
     margin: auto;
     left: 0;
     right: 0;
-    top: 20px;
+    top: 20px !important;
+    position: absolute;
     bottom: 20px;
     background-color: rgba(255,255,255,0.5);
     border-radius: 10px;
@@ -30,65 +36,81 @@
 
 #topbar{
     width: 100%;
-    height: 10%;
+    height: 60px;
     background-color: rgba(255,255,255,1);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
 #topbar #info {
-    width: 75%;
-    height: 10%;
-    position: absolute;
-    left: 25%;
-    padding: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+	margin-left: 10px;
 }
 
 #topbar h1 {
-    display: inline-block;
+    float: left;
+	font-weight: 300;
+	font-size: 20px;
+	color: #545454;
+}
+
+#midwrapper{
+    width: 100%;
+    height: 83%;
+    overflow: hidden;
+    position: relative;
 }
 
 #logout {
+    font-size:15px;
     cursor: pointer;
 }
+#logout:hover {
+    color: #2c2c2c;
+}
 
-#topbar #notification {
+#topbar #notification{
+    text-align: right;
     float: right;
-    padding: 10px 0;
-    position: relative;
-    right: 3%;
-    width: 28%;
+    padding-right: 20px;
+    width: auto;
+    margin-top:5px;
+}
+#topbar #notification .random {
+    background: rgba(51, 204, 255, 0.5) !important;
+}
+
+#topbar #notification .ng-enter {
+    animation: slider_animation 0.5s linear;
+    -webkit-animation: slider_animation 0.5s linear;
 }
 
 #topbar #notification h3 {
     display: inline-block;
+    margin: 0 10px 0 0;
 }
 
 #topbar #notification #slider{
     overflow: visible;
-    position: relative;
     top: 0.4em;
-    width: 3em;
-    height: 0.8em;
+    width: 2.6em;
+    height: 0.6em;
+	margin-top: 7px;
     border-radius: 1em;
-    background: rgba(51, 204, 255, 0.5);
+    background: rgba(188, 187, 197, 0.50);
     float: right;
 }
 
-#topbar #notification .random {
-    background-color: black;
-    width: 500px;
-}
-
 #topbar #notification #sliderPosition {
-    /*background: #3f51b5;*/
-    background-color: lightgrey;
-    width: 25px;
-    height: 25px;
+    background: rgb(119, 119, 119) !important;
+    width: 17px;
+    height: 17px;
     border-radius: 1em;
     cursor: pointer;
     position: relative;
-    bottom: 6px;
+    bottom: 4px;
     left: 0;
 
     -webkit-transition: 0.2s linear;
@@ -98,44 +120,46 @@
 }
 
 #topbar #notification #slider .foo {
-    background: #837AFB;
     left: 25px;
+    /*background: rgba(51, 204, 255, 1) !important;*/
 }
 
-#topbar #notification #sliderPosition.ng-enter {
-    animation: slider_animation 0.5s linear;
-    -webkit-animation: slider_animation 0.5s linear;
-}
+/*#topbar #notification #sliderPosition.ng-enter {*/
+    /*animation: slider_animation 0.5s linear;*/
+    /*-webkit-animation: slider_animation 0.5s linear;*/
+/*}*/
 
 @keyframes slider_animation {
-    from { background-color: lightgrey; }
-    to { background-color: #3498db; }
+    from {      background: rgba(188, 187, 197, 0.50); }
+    to {        background: rgba(51, 204, 255, 0.5) !important; }
 }
 
 @-webkit-keyframes slider_animation {
-    from { background-color: lightgrey; }
-    to { background-color: #3498db; }
+    /*from { background-color: lightgrey; }*/
+    /*to { background-color: #3498db; }*/
 }
 
 #sidebar {
     width: 25%;
-    height: 80%;
-    position: absolute;
-    top: 10%;
-    left: 0;
+    height: 100%;
+    float: left;
     background-color: rgba(255,255,255,0.7);
     overflow: auto;
+    position: absolute;
 }
 
 #sidebar h3 {
     text-align: center;
     padding: 10px;
     border-bottom: 1px ridge lightgrey;
-    font-weight: bold;
+    font-weight: 300;
+	text-transform: uppercase;
+	font-size: 14px;
+	color: #545454;
 }
 
 #sidebar #usersOnline {
-    height: 90%;
+    height: 100%;
     width: 100%;
 }
 
@@ -149,15 +173,15 @@
 #sidebar #usersOnline h3::before {
     content: '';
     display: block;
-    width: 0.65em;
-    height: 0.65em;
+    width: 0.5em;
+    height: 0.5em;
     background-color: limegreen;
     border-radius: 50%;
-    position: absolute;
     top: 16px;
+    position: absolute;
     /*box-shadow: #295629 1px 1px 1px;*/
     animation: onlineblink;
-    animation-duration: 1.4s;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-fill-mode: both;
 }
@@ -176,7 +200,7 @@
 
 #messageWindow {
     width: 75%;
-    height: 80%;
+    height: 100%;
     float:right;
     /*overflow: hidden;*/
     overflow-y: auto;
@@ -188,23 +212,30 @@
     width: 100%;
     /*top: 100%;*/
     float:right;
+    overflow: hidden;
     /*height:inherit;*/
 }
 
 #messageWindow #allMessages ol {
     list-style-type:none;
+	/*overflow-y: scroll;*/
+	/*overflow-x: hidden;*/
+	/*max-height: 480px;*/
+	/*min-height: 300px;*/
 }
 
-#messageWindow #allMessages ol li .balloon a {
-    color: #039be5;
-    font-weight: 500;
+#messageWindow #allMessages ol li {
+	max-width: 97%;
+	word-wrap: break-word;
+	color: #545454;
+	font-size: 13px;
+	font-weight: 300;
+	line-height: 18px;
 }
 
-#messageWindow #allMessages ol li .balloon a:visited {
-    color: #039be5;
-    font-weight: 500;
+#messageWindow #allMessages ol li h4{
+	font-weight: bold;
 }
-
 #messageWindow #allMessages .self {
     display: flex;
     -webkit-flex-direction: row-reverse;
@@ -213,11 +244,11 @@
 
 #messageWindow #allMessages .self .balloon {
     position: relative;
-    right: 5%;
+    right: 5px;
     margin: 10px 0;
-    background-color: rgba(255,255,255,0.7);
-    min-width: 20%;
-    max-width: 50%;
+	min-width: 190px;
+	max-width: 85%;
+    background-color: rgba(111,223,253,1);
     border-radius: 5px;
     padding: 5px 10px;
     word-wrap: break-word;
@@ -240,21 +271,22 @@
     width: 0;
     border-width: 15px 15px 0 0;
     border-style: solid;
-    border-color: rgba(255,255,255,0.7) transparent;
+    border-color: rgba(111,223,253,1) transparent;
     transform: rotate(270deg);
 }
 
 #messageWindow #allMessages h4{
     font-weight: bold;
+	float: left;
+	width: auto;
+	margin-right: 10px;
 }
 
 #messageWindow #allMessages .balloon .messageDate{
     font-style: italic;
-    font-size: 0.8em;
+    font-size: 11px;
     float: right;
-    height: 0;
-    position: relative;
-    bottom: 20px;
+	width: 30px;
 }
 
 #messageWindow #allMessages .other {
@@ -267,9 +299,9 @@
     position: relative;
     left: 5%;
     margin: 10px 0;
-    background-color: rgba(255,255,255,0.7);
-    min-width: 20%;
-    max-width: 50%;
+	min-width: 190px;
+	max-width: 85%;
+    background-color: rgba(152,234,164,0.81);
     border-radius: 5px;
     padding: 5px 10px;
     word-wrap: break-word;
@@ -284,7 +316,7 @@
     width: 0;
     border-width: 15px 15px 0 0;
     border-style: solid;
-    border-color: rgba(255,255,255,0.7) transparent;
+    border-color: rgba(152,234,164,0.81) transparent;
     transform: rotate(180deg);
 }
 
@@ -294,6 +326,8 @@ video {
     position: relative;
     z-index: 1;
 }
+
+#floatclear{clear: both;}
 
 #livetyping {
     font-style: italic;
@@ -335,47 +369,58 @@ video {
 
 #bottombar {
     width: 100%;
-    height: 10%;
-    position: absolute;
+    height: 50px;
     bottom: 0;
     left: 0;
-    background-color: rgba(255,255,255,1);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+#bottombar ul{height: 100%;}
+#bottombar ul li{
+    list-style: none;
+    float:left;
+    width: auto;
+    height: 100%;
+}
+
+#bottombar ul li.talkbox {
+	width: calc(100% - 135px);
 }
 
 #media{
     width: 25%;
-    padding: 10px 0;
+    padding: 18px 25px;
     text-align: center;
-    display: inline-block
+    display: inline-block;
+	cursor: pointer;
+	background: white;
+    border-bottom-left-radius: 5px;
+}
+#media h2{
+	text-align: left;
+	font-size: 12px;
+	font-weight: 300;
+	color: #545454;
+	margin-left: 25px;
 }
 
 #media i {
-    color: #555;
-    margin: 0 5px;
-    width: 60px;
-    height: 40px;
-    padding: 5px;
+    color: #545454;
+	transition: 300ms;
+	float: left;
+    cursor: pointer;
 }
 
-#media i:hover {
-    background-color: #5dc2f1;
-    color: white;
-    /*width: 60px;*/
-    margin: 0 5px;
-    transition-duration: 0.5s;
-    cursor: pointer;
-    border-radius: 5px;
+#media:hover i {
+	transform: rotate(360deg);
 }
 
 #textbar {
-    position: relative;
+    float: right;
     width: 75%;
-    height: 100%;
+    height: 50px;
     float:right;
     padding: 1% 2%;
-    background-color: #dfdfdf;
     border-bottom-right-radius: 10px;
 }
 
@@ -383,25 +428,24 @@ video {
     position: relative;
     top: 10%;
     right: 0.5%;
+    margin-top:7px !important;
 }
 
 #textbar #openEmoji:hover {
     cursor: pointer;
-    color: gray;
+    /*color: gray;*/
 }
 
 #textbar #messageField {
-    width: 95%;
-    height: 100%;
-    /*position: relative;*/
+    background-color: white;
+    width: 100%;
+    height: 35px;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 25px;
     border: none;
     color: #444444;
     padding: 10px;
-    background-color: white;
     line-height: 16px;
-    float:right;
 }
 
 #textbar #messageField:focus {
@@ -427,9 +471,28 @@ video {
     font-weight: bold;
 }
 
+#textbar i {
+    color: white;
+    margin: 10px 10px;
+}
+
+.balletje{
+    float: left;
+    width: 35px;
+    height: 35px;
+	margin: 0 5px;
+    border-radius: 50px;
+    background-color: rgba(0,156,198,1);
+    cursor: pointer;
+}
+
+.balletje:hover {
+    background-color: rgba(0,156,198,0.9);
+}
+
 @media screen and (min-width: 1400px) {
     * {
-        font-size: 32px;
+        /*font-size: 32px;*/
     }
 }
 
@@ -457,7 +520,6 @@ video {
         width: 35px;
     }
     #media {
-        height: 20%;
     }
 }
 
@@ -485,4 +547,8 @@ video {
 .scroll-bar{
     background-color: #7A8688;
     border-radius: 10px;
+}
+
+#balletje{
+    background-image: url(images/fa-paperclip.png);
 }

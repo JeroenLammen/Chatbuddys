@@ -253,7 +253,8 @@
         this.$editor.on('mousedown focus', function() { document.execCommand('enableObjectResizing', false, false); });
         this.$editor.on('blur', function() { document.execCommand('enableObjectResizing', true, true); });
 
-        var html = this.$editor.text();
+        var html = this.$editor.html();
+        html = html.replace(/\n/g, '<br>');
         var emojis = $.emojiarea.icons;
         for (var group in emojis) {
             for (var key in emojis[group]['icons']) {

@@ -6,6 +6,11 @@
     font-weight: 300;
 }
 
+
+body {
+	padding: 0 20px !important;
+}
+
 .wrapper.form-success .container h1 {
     -webkit-transform: translateY(85px);
     transform: translateY(85px);

@@ -81,7 +81,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             console.log($scope.message);
         }, 100);
         if($event.keyCode === 13) {
-            $event.preventDefault();
             $scope.sendMessage();
         }
         if($scope.message){
@@ -130,7 +129,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             file: $scope.selectedFile
         };
         $scope.message = '';
-        $("#textbar").children("#messageField").empty();
+        $("#messageField").empty();
+        //$("#textbar").children("#messageField").empty();
         $scope.selectedFile = null;
         console.log("EMPTIED");
         console.log($scope.selectedFile);
@@ -165,6 +165,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
 
         //messageSlimScroll.resetValues();
         setTimeout(function() {
+            console.log('aasasas');
             $('#messageWindow').mCustomScrollbar('scrollTo', 'bottom', {
                 scrollInertia: 0
             });

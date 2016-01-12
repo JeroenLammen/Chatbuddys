@@ -56,6 +56,10 @@ Bekijk je gewijzigde bestanden, en of deze klaar zijn om te committen ("staged f
 
 dit commando kan je het beste na bestandswijzigingen en na het 'git add' commando uitvoeren ter controle.
 
+`git diff FILENAME`
+
+Hiermee kan je in je terminal precies zien welke regels code zijn gewijzigd voor het opgegeven bestand
+
 ### Voeg bestanden toe om te committen
 voorbeelden:
 
