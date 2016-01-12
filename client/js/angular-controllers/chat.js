@@ -130,7 +130,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             file: $scope.selectedFile
         };
         $scope.message = '';
-        $("#textbar").children("#messageField").empty();
+        //$("#textbar").children("#messageField").empty();
         $scope.selectedFile = null;
         console.log("EMPTIED");
         console.log($scope.selectedFile);
@@ -215,6 +215,12 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             .error(function(error){
                 console.log("error!");
             });
+    };
+
+    $scope.preventEnter = function($event) {
+        if($event.keyCode === 13) {
+            $event.preventDefault();
+        }
     };
 
     var tabActive = true;

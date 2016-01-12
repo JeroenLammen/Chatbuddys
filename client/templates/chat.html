@@ -59,7 +59,7 @@
         </div>
         <div id="textbar">
             <i class="fa fa-smile-o fa-2x" id="openEmoji"></i>
-            <div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-model="message"></div>
+            <div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-keydown="preventEnter($event)" ng-model="message"></div>
             <!--<input type="text" id="messageField" placeholder="Write a message..." ng-keyup="update($event)" ng-model="message">-->
         </div>
     </div>

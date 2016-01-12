@@ -71,13 +71,20 @@
     width: 3em;
     height: 0.8em;
     border-radius: 1em;
-    background: rgba(51, 204, 255, 0.5);
     float: right;
+    background: linear-gradient(to left, grey 50%, rgba(51, 204, 255, 0.5) 50%) right bottom;
+    background-position: right bottom;
+    background-size: 200% 100%;
+    margin-left:10px;
+
+    -webkit-transition: 0.2s linear;
+    -moz-transition: 0.2s linear;
+    -o-transition: 0.2s linear;
+    transition: 0.2s linear;
 }
 
 #topbar #notification .random {
-    background-color: black;
-    width: 500px;
+    background-position:left bottom !important;
 }
 
 #topbar #notification #sliderPosition {
@@ -100,21 +107,6 @@
 #topbar #notification #slider .foo {
     background: #837AFB;
     left: 25px;
-}
-
-#topbar #notification #sliderPosition.ng-enter {
-    animation: slider_animation 0.5s linear;
-    -webkit-animation: slider_animation 0.5s linear;
-}
-
-@keyframes slider_animation {
-    from { background-color: lightgrey; }
-    to { background-color: #3498db; }
-}
-
-@-webkit-keyframes slider_animation {
-    from { background-color: lightgrey; }
-    to { background-color: #3498db; }
 }
 
 #sidebar {
