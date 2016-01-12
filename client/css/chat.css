@@ -241,11 +241,15 @@ html, body {margin:0;padding:0;height:100%;}
     word-wrap: break-word;
 }
 
-#messageWindow #allMessages .self .balloon img {
-    transform: scale(0.4);
-    position: absolute;
-    top: 0;
-    bottom: 0;
+#messageWindow #allMessages .balloon img {
+    width:25px;
+    height:25px;
+    background-position:-72.5px -37.5px;
+    background-size:268px 170.5px;
+    /*transform: scale(0.4);*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
     /*position: absolute;*/
 }
 
@@ -413,14 +417,14 @@ video {
     border-bottom-right-radius: 10px;
 }
 
-#textbar #openEmoji {
+#textbar .openEmoji {
     position: relative;
     top: 10%;
     right: 0.5%;
     margin-top:7px !important;
 }
 
-#textbar #openEmoji:hover {
+#textbar .openEmoji:hover {
     cursor: pointer;
     /*color: gray;*/
 }
