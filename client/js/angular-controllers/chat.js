@@ -237,12 +237,12 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                     break;
                 case "focus":
                     tabActive = true;
+                    removeTitle();
                    // console.log("tab is active again!");
                     break;
             }
         }
         $(this).data("prevType", e.type);
-        removeTitle();
     });
 
     //REQUEST, ENABLE AND DISABLE NOTIFICATIONS
