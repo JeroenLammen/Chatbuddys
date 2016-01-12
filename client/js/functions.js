@@ -21,7 +21,7 @@ function createNotification(message, enableNotifications){
             console.log("enabled");
             var options = {
                 body: message.body,
-                icon: 'http://www.clipartbest.com/cliparts/dT7/eGE/dT7eGEonc.png'
+                icon: '../images/cb-icon2.png'
             };
             var n = new Notification(message.author,options);
             setTimeout(n.close.bind(n), 4000);

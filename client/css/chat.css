@@ -243,9 +243,9 @@ html, body {margin:0;padding:0;height:100%;}
 
 #messageWindow #allMessages .self .balloon img {
     transform: scale(0.4);
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
     /*position: absolute;*/
 }
 
@@ -380,7 +380,6 @@ video {
     padding: 18px 25px;
     text-align: center;
     display: inline-block;
-	cursor: pointer;
 	background: white;
     border-bottom-left-radius: 5px;
 }
@@ -422,6 +421,21 @@ video {
 #textbar #openEmoji:hover {
     cursor: pointer;
     /*color: gray;*/
+}
+
+/*TODO: Triangle underneath emoji menu*/
+.emoji-menu::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 5px;
+    left: 100%;
+    width: 0;
+    border-width: 15px 15px 0 0;
+    border-style: solid;
+    border-color: rgba(111,223,253,1) transparent;
+    transform: rotate(270deg);
+
 }
 
 #textbar #messageField {
