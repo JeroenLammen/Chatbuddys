@@ -225,6 +225,9 @@
 
 #messageWindow #allMessages .self .balloon img {
     transform: scale(0.4);
+    position: absolute;
+    top: 0;
+    bottom: 0;
     /*position: absolute;*/
 }
 
@@ -245,7 +248,7 @@
     font-weight: bold;
 }
 
-#messageWindow #allMessages span{
+#messageWindow #allMessages .balloon .messageDate{
     font-style: italic;
     font-size: 0.8em;
     float: right;

@@ -30,8 +30,8 @@
                     <div ng-class=message.from>
                         <div class="balloon">
                             <h4>{{message.author}}</h4>
-                            <span>{{message.date}}</span>
-                            <p ng-show="message.body" ng-bind-html="trustAsHtml(message.body)">{{message.body}}</p>
+                            <span class="messageDate">{{message.date}}</span>
+                            <span ng-show="message.body" ng-bind-html="trustAsHtml(message.body)">{{message.body}}</span>
                             <a ng-show="message.filePath" ng-href="{{message.filePath}}" target="_self" download>{{message.fileName}}</a>
                         </div>
                     </div>
