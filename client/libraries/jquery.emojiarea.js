@@ -413,7 +413,7 @@
         }
         groups.push('<ul class="group-selector">');
         for (var group in options) {
-            groups.push('<a href="#group_' + group + '" class="tab_switch"><li>' + options[group]['name'] + '</li></a>');
+            groups.push('<a id="#group_' + group + '" class="tab_switch"><li>' + options[group]['name'] + '</li></a>');
             html.push('<div class="select_group" group="' + group + '" id="group_' + group + '">');
             for (var key in options[group]['icons']) {
                 if (options[group]['icons'].hasOwnProperty(key)) {
@@ -428,7 +428,7 @@
         this.$menu.prepend(groups.join(''));
         this.$menu.find('.tab_switch').each(function(i) {
             if (i != 0) {
-                var select = $(this).attr('href');
+                var select = $(this).attr('id');
                 $(select).hide();
             } else {
                 $(this).addClass('active');
@@ -437,7 +437,7 @@
                 $(this).addClass('active');
                 $(this).siblings().removeClass('active');
                 $('.select_group').hide();
-                var select = $(this).attr('href');
+                var select = $(this).attr('id');
                 $(select).show();
             });
         });
