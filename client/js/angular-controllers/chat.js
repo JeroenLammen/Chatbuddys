@@ -79,15 +79,18 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     $scope.update = function($event) {
         setTimeout( function() {
             console.log($scope.message);
-        }, 100);
-        if($event.keyCode === 13) {
-            $scope.sendMessage();
-        }
-        if($scope.message){
-            socket.emit("typing", $scope.username);
-        } else {
-            socket.emit("stoppedTyping", $scope.username);
-        }
+
+            if($event.keyCode === 13) {
+                $scope.sendMessage();
+            }
+            if($scope.message){
+                $scope.removePlaceholder();
+                socket.emit("typing", $scope.username);
+            } else {
+                $scope.addPlaceholder();
+                socket.emit("stoppedTyping", $scope.username);
+            }
+        }, 1);
     };
 
     $scope.logout = function() {
@@ -118,6 +121,14 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             $scope.usersTyping.splice(index, 1);
         }
     });
+
+    $scope.removePlaceholder = function() {
+        $("#div-placeholder").empty();
+    };
+
+    $scope.addPlaceholder = function() {
+        $("#div-placeholder").text("Write a message...");
+    };
 
     $scope.selectedFile = null;
 
