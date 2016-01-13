@@ -116,11 +116,11 @@
     width: 15px;
 }
 .emoji-menu .group-selector a {
-    color: #EB7878;
+    color: #323232;
     text-decoration: none;
     border: none;
     background-color: transparent;
 }
 .emoji-menu .group-selector a:hover, .emoji-menu .group-selector a.active {
-    color:#000000;
+    color:#41DC9E;
 }
