@@ -54,9 +54,7 @@ exports.add = function(message, socket, io){
         document.save(function (err) {
             if(err){
                 handleError(err);
-                console.log("HALLO FOUTMELDING HIERO");
                 console.log(err);
-                //SHOULD EMIT ANOTHER ERROR MESSAGE, EVEN THOUGH THIS WOULD PROBABLY NEVER RUN
             } else {
                 console.log("message saved");
                 io.sockets.emit("message", document);
@@ -65,7 +63,6 @@ exports.add = function(message, socket, io){
     } else {
         console.log("incorrect message");
         // don't use "error" as the name of the socket message,
-        // took me forever to find out why it wouldn't work
         socket.emit("incorrectMessage", "empty username and/or message");
     }
 };
@@ -121,6 +118,7 @@ function checkMessage(message){
     }
 }
 
+// this function validates the given message
 function checkFile(message){
     if(
         !message.filePath ||

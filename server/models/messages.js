@@ -14,16 +14,6 @@ messageSchema.path('body').validate(function(val) {
     return (val !== undefined && val !== null);
 }, "incorrect message");
 
-//messageSchema.path('body').validate(function(val) {
-//   if(messageSchema.path("filePath").validate(function(val){
-//       return (val !== undefined && val !== null);
-//   }, false)) {
-//       return true;
-//   } else {
-//       return (val !== undefined && val !== null);
-//   }
-//}, "incorrect message");
-
 var Message = mongoose.model("Message", messageSchema);
 
 module.exports = Message;

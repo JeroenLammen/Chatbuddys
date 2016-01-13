@@ -12,10 +12,6 @@ chatApp.config(function($routeProvider, $locationProvider) {
             templateUrl: 'templates/chat.html',
             controller: 'chatController'
         })
-        .when("/about", {
-            templateUrl: 'templates/about.html',
-            controller: 'aboutController'
-        })
         .when("/delete", {
             controller: 'deleteController',
             templateUrl: "templates/delete.html"

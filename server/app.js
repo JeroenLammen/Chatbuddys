@@ -46,9 +46,6 @@ var upload = multer({ storage: storage });
 app.use(express.static('../client'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-// VOOR HET GEVAL DAT JE DE ERROR 'REQUEST ENTITY TOO LARGE' KRIJGT
-//app.use(bodyParser.json({limit: '50mb'}));
-//app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 app.use(cookieParser());
 
 modelFiles.forEach(function(file){
@@ -72,9 +69,6 @@ mongoose.connection.on('error', function (error) {
     console.log("Error connecting to database: " + db.database);
     console.log(error);
 });
-
-//this file is used to experiment
-require("./experiments/experiments")(app);
 
 //load index.html for every request that has not been defined
 //Angular.js will handle the route and show a 404 page if the route does not exist

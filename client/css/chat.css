@@ -289,9 +289,9 @@ html, body {margin:0;padding:0;height:100%;}
 #messageWindow #allMessages .other .balloon {
     position: relative;
     left: 5%;
-    margin: 10px 0;
+    margin: 5px 0;
 	min-width: 190px;
-	max-width: 85%;
+	max-width: 45%;
     background-color: rgba(152,234,164,0.81);
     border-radius: 5px;
     padding: 5px 10px;
@@ -398,8 +398,6 @@ video {
 #textbar {
     float: right;
     width: 75%;
-    height: 100%;
-    float:right;
     padding: 1.2% 2%;
     border-bottom-right-radius: 10px;
 }
@@ -425,7 +423,8 @@ video {
 }
 
 #bottombar ul li.talkbox {
-    width: calc(100% - 135px);
+    width: calc(100% - 145px);
+    margin: 0 5px;
     background-color: white;
     border-radius: 25px;
 }

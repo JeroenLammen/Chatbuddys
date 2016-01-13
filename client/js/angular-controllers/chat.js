@@ -59,8 +59,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                 });
             },1);
             for(var i =0; i<messages.length; i++){
-                //messages[i].body = $sce.trustAsHtml(messages[i].body);
-                //messages[i].body = messages[i].body.linkify();
                 messages[i].date = setDate(messages[i].date);
                 if(messages[i].authorID === $cookies.get("ID")){
                     messages[i].from = "self";
@@ -68,7 +66,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                     messages[i].from = "other";
                 }
                 $scope.messages.push(messages[i]);
-                //emojify.run();
             }
         })
         .error(function(err){
@@ -93,6 +90,7 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }, 1);
     };
 
+    //LOGOUT
     $scope.logout = function() {
         var cookies = $cookies.getAll();
 
@@ -122,10 +120,12 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }
     });
 
+    //REMOVE DIV PLACEHOLDER
     $scope.removePlaceholder = function() {
         $("#div-placeholder").empty();
     };
 
+    //ADD DIV PLACEHOLDER
     $scope.addPlaceholder = function() {
         $("#div-placeholder").text("Write a message...");
     };
@@ -156,14 +156,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
 
     //GET NEW MESSAGE
     socket.on("message", function(message){
-
-        //TRYING TO FIX SCROLLBAR WHEN MESSAGEWINDOW IS ENLARGED
-        //$("#messageWindow").removeAttr("data-slimscroll");
-        //$(".scroll-wrap > #allMessages").unwrap();
-        //$(".scrollBarContainer").remove();
-
-        //message.body = message.body.linkify();
-        //message.body = $sce.trustAsHtml(message.body);
         message.date = setDate(message.date);
         console.log("authorID: " + message.authorID);
         console.log("socketID: " + socket.id());
@@ -173,8 +165,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             message.from = "other";
         }
         $scope.messages.unshift(message);
-
-        //messageSlimScroll.resetValues();
         setTimeout(function() {
             console.log('aasasas');
             $('#messageWindow').mCustomScrollbar('scrollTo', 'bottom', {
@@ -186,22 +176,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             changeTitle(message, tabActive);
             createNotification(message, $scope.enableNotifications);
         }
-
-        //var element = document.querySelectorAll('.slimScroll');
-        //var two = new slimScroll(element[1], {
-        //    'wrapperClass': 'scroll-wrap',
-        //    'scrollBarContainerClass': 'scrollBarContainer',
-        //    //'scrollBarContainerSpecialClass': 'animate',
-        //    'scrollBarClass': 'scroll-bar',
-        //    'keepFocus': true
-        //});
-        //two.resetValues();
-            //swal("Saved Message", message.body, "success");
-       // }
     });
 
-    var selectedFile = document.getElementById('target').files[0];
-    console.log(selectedFile);
 
     //FILE UPLOAD
     $scope.openFile = function() {
@@ -275,9 +251,8 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
                if(permission === "granted") {
                    console.log("granted");
                    $cookies.put("notifications", "true");
-                   //TODO: fix slider not changing, even though the code above is being executed
                    $scope.enableNotifications = true;
-                   //UGLY FIX FOR PROBLEM ABOVE
+                   //UGLY FIX FOR SLIDER NOT CHANGING POSITION THE FIRST TIME
                    $("#sliderPosition").click();
                    $("#sliderPosition").click();
                } else {
@@ -302,97 +277,62 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }
     };
 
-    var messageSlimScroll;
-
-    //SCROLLBAR
-    //window.onload = function(){
-    //    if(!navigator.userAgent.match('Macintosh')){
-    //        var element = document.querySelectorAll('.slimScroll');
-    //        // Apply slim scroll plugin
-    //        messageSlimScroll = new slimScroll(element[1], {
-    //            'wrapperClass': 'scroll-wrap',
-    //            'scrollBarContainerClass': 'scrollBarContainer',
-    //            //'scrollBarContainerSpecialClass': 'animate',
-    //            'scrollBarClass': 'scroll-bar',
-    //            'keepFocus': true
-    //        });
-    //
-    //        // resize example
-    //        // To make the resizing work, set the height of the container in PERCENTAGE
-    //        window.onresize = function(){
-    //            one.resetValues();
-    //        }
-    //    } else {
-    //        document.write("For Mac users, this custom slimscroll styles will not be applied");
-    //    }
-    //};
-
-    //slimscroll won't load without a timeout
-    //setTimeout(function(){
-    //    window.onload();
-    //},100);
-
 //--------------------------------------------------------------------------------------------
 //  WEBRTC
 //--------------------------------------------------------------------------------------------
+    //NOT IMPLEMENTED
 
-    navigator.getUserMedia = navigator.getUserMedia ||
-        navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-
-    function successCallback(localMediaStream) {
-        window.stream = localMediaStream; // stream available to console
-        console.log("successcallback");
-        if ($('video').length === 0) {
-            $("#messageWindow").append("<video></video>");
-            var video = document.querySelector("video");
-            video.src = window.URL.createObjectURL(localMediaStream);
-            video.play();
-        } else {
-            var removevideo = document.querySelector("video");
-            //window.stream.stop();
-            removevideo.src = null;
-            removevideo.remove();
-        }
-    }
-
-    function errorCallback(error){
-        console.log("navigator.getUserMedia error: ", error);
-    }
-
-    var constraints = {
-        video: false,
-        audio: false
-    };
-
-    $scope.requestCamera = function() {
-        constraints.video = true;
-        navigator.getUserMedia(constraints, successCallback, errorCallback);
-    };
-
-    $scope.fa_icon = 'fa fa-microphone fa-2x';
-
-    $scope.requestMicrophone = function() {
-        if(!constraints.audio){
-            constraints.audio = true;
-            navigator.getUserMedia(constraints, successCallback, errorCallback);
-            $scope.fa_icon = 'fa fa-microphone-slash fa-2x';
-        } else {
-            constraints.audio = false;
-            $scope.fa_icon = 'fa fa-microphone fa-2x';
-            if(constraints.video){
-                navigator.getUserMedia(constraints, successCallback, errorCallback);
-            } else {
-                $("video").remove();
-            }
-        }
-
-
-    };
-
-    //TODO: include and configure FlowType.js, CSS font styles need to be redone
-    //$('body').flowtype({
-    //    minFont : 12,
-    //    maxFont : 40
-    //});
+    //navigator.getUserMedia = navigator.getUserMedia ||
+    //    navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    //
+    //function successCallback(localMediaStream) {
+    //    window.stream = localMediaStream; // stream available to console
+    //    console.log("successcallback");
+    //    if ($('video').length === 0) {
+    //        $("#messageWindow").append("<video></video>");
+    //        var video = document.querySelector("video");
+    //        video.src = window.URL.createObjectURL(localMediaStream);
+    //        video.play();
+    //    } else {
+    //        var removevideo = document.querySelector("video");
+    //        //window.stream.stop();
+    //        removevideo.src = null;
+    //        removevideo.remove();
+    //    }
+    //}
+    //
+    //function errorCallback(error){
+    //    console.log("navigator.getUserMedia error: ", error);
+    //}
+    //
+    //var constraints = {
+    //    video: false,
+    //    audio: false
+    //};
+    //
+    //$scope.requestCamera = function() {
+    //    constraints.video = true;
+    //    navigator.getUserMedia(constraints, successCallback, errorCallback);
+    //};
+    //
+    //$scope.fa_icon = 'fa fa-microphone fa-2x';
+    //
+    //$scope.requestMicrophone = function() {
+    //    if(!constraints.audio){
+    //        constraints.audio = true;
+    //        navigator.getUserMedia(constraints, successCallback, errorCallback);
+    //        $scope.fa_icon = 'fa fa-microphone-slash fa-2x';
+    //    } else {
+    //        constraints.audio = false;
+    //        $scope.fa_icon = 'fa fa-microphone fa-2x';
+    //        if(constraints.video){
+    //            navigator.getUserMedia(constraints, successCallback, errorCallback);
+    //        } else {
+    //            $("video").remove();
+    //        }
+    //    }
+    //
+    //
+    //};
 
 });
