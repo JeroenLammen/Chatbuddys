@@ -355,6 +355,11 @@
         var $body = $(document.body);
         var $window = $(window);
 
+        this.$wrapper = $('<div>');
+        this.$wrapper.addClass("emojiWrapper");
+        this.$wrapper.hide();
+        $body.append(this.$wrapper);
+
         this.visible = false;
         this.emojiarea = null;
         this.$menu = $('<div>');
@@ -362,7 +367,7 @@
         this.$menu.hide();
         this.$items = $('<div>').appendTo(this.$menu);
 
-        $body.append(this.$menu);
+        this.$wrapper.append(this.$menu);
 
         $body.on('keydown', function(e) {
             if (e.keyCode === KEY_ESC || e.keyCode === KEY_TAB) {
@@ -463,6 +468,7 @@
         }
         this.visible = false;
         this.$menu.hide();
+        this.$wrapper.hide();
     };
 
     EmojiMenu.prototype.show = function(emojiarea) {
@@ -472,6 +478,7 @@
 
         this.reposition();
         this.$menu.show();
+        this.$wrapper.show();
         this.visible = true;
     };
 

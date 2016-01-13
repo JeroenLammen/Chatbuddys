@@ -15,10 +15,10 @@ function setDate(date) {
 }
 
 function createNotification(message, enableNotifications){
+    //images are not supported in the notification body, so remove them
+    message.body = removeEmojis(message.body);
     if(Notification.permission === "granted") {
-        console.log("granted");
         if(enableNotifications){
-            console.log("enabled");
             var options = {
                 body: message.body,
                 icon: '../images/cb-icon2.png'
@@ -29,9 +29,13 @@ function createNotification(message, enableNotifications){
     }
 }
 
+function removeEmojis(body) {
+    body = body.replace(/<img[^>]*>/g,"");
+    return body;
+}
+
 var titleTimeout;
 function changeTitle(message, tabActive) {
-    console.log(message );
     document.title = message.author + ' zegt: '+message.body + "...";
     titleTimeout = setTimeout(function() {
         document.title = "Chatbuddy's";
@@ -56,7 +60,6 @@ function getIndexOfObject(array, property, value) {
 }
 
 function confirmupload(files) {
-    console.log(files);
     swal({
         title: 'Upload?',
         text: files[0].name,
@@ -66,8 +69,6 @@ function confirmupload(files) {
         closeOnConfirm: true
     }, function(){
         angular.element('ng-view').scope().upload();
-        //angular.element('ng-view').scope().sendMessage();
-        //swal("ok!", "pfftst", "success");
     }, function(){
         //$('#target').val = null;
         //console.log("canceled!");

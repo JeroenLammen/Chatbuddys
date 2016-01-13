@@ -9,6 +9,33 @@
     vertical-align: middle;
     margin: -3px 0 0 0;
 }
+
+.emojiWrapper {
+    position: absolute;
+    top: 55% !important;
+    top: 300px;
+    z-index: 999;
+    width: 500px;
+    margin-left: -100px;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.emojiWrapper::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 187px;
+    right: -9%;
+    border-width: 25px 25px 0 0;
+    border-style: solid;
+    border-color: rgb(255, 255, 255) transparent;
+    transform: rotate(225deg);
+
+}
+
 .emoji-menu {
     position: absolute;
     top: 55% !important;
@@ -26,7 +53,7 @@
     max-height: 200px;
     overflow: hidden;
     background: #fff;
-    width: 530px;
+    width: 100%;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
     -webkit-border-radius: 3px;
