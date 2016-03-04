@@ -123,4 +123,5 @@
 }
 .emoji-menu .group-selector a:hover, .emoji-menu .group-selector a.active {
     color:#41DC9E;
+    cursor: pointer;
 }

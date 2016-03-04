@@ -75,7 +75,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     //MESSAGE INPUT EVENTS
     $scope.update = function($event) {
         setTimeout( function() {
-            console.log($scope.message);
 
             if($event.keyCode === 13) {
                 $scope.sendMessage();
@@ -134,7 +133,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
 
     //SEND MESSAGE
     $scope.sendMessage = function(){
-        console.log($scope.selectedFile);
         $scope.newMessage = {
             body: $scope.message,
             file: $scope.selectedFile
@@ -143,8 +141,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         $("#messageField").empty();
         //$("#textbar").children("#messageField").empty();
         $scope.selectedFile = null;
-        console.log("EMPTIED");
-        console.log($scope.selectedFile);
         $("#textbar").children("#messageField").focus();
         socket.emit("sendMessage", $scope.newMessage);
     };
@@ -157,8 +153,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     //GET NEW MESSAGE
     socket.on("message", function(message){
         message.date = setDate(message.date);
-        console.log("authorID: " + message.authorID);
-        console.log("socketID: " + socket.id());
         if(message.authorID === $cookies.get("ID")){
             message.from = "self";
         } else {
@@ -166,7 +160,6 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
         }
         $scope.messages.unshift(message);
         setTimeout(function() {
-            console.log('aasasas');
             $('#messageWindow').mCustomScrollbar('scrollTo', 'bottom', {
                 scrollInertia: 0
             });
@@ -187,22 +180,18 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
 
     $scope.upload = function(){
         var selectedFile = $('#target').get(0).files[0];
-        console.log(selectedFile);
 
         var fd = new FormData();
         fd.append('file', selectedFile);
         fd.append("id", $cookies.get("ID"));
 
-        console.log("uploading....");
         $http.post("/uploads", fd, {
             transformRequest: angular.identity,
             headers: {"Content-Type": undefined}
         })
             .success(function(data){
-                console.log(data);
             })
             .error(function(error){
-                console.log("error!");
             });
     };
 
@@ -220,12 +209,10 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
             switch (e.type) {
                 case "blur":
                     tabActive = false;
-                    //console.log("tab is no longer active");
                     break;
                 case "focus":
                     tabActive = true;
                     removeTitle();
-                   // console.log("tab is active again!");
                     break;
             }
         }
@@ -247,16 +234,13 @@ chatApp.controller("chatController", function($scope, $http, socket, $cookies, $
     $scope.changeSlider = function(){
         if(Notification.permission !== "granted") {
             Notification.requestPermission(function(permission) {
-                console.log("requesting....");
                if(permission === "granted") {
-                   console.log("granted");
                    $cookies.put("notifications", "true");
                    $scope.enableNotifications = true;
                    //UGLY FIX FOR SLIDER NOT CHANGING POSITION THE FIRST TIME
                    $("#sliderPosition").click();
                    $("#sliderPosition").click();
                } else {
-                   console.log("denied");
                    $cookies.put("notifications", "false");
                    $scope.enableNotifications = false;
                    swal({

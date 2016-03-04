@@ -8,8 +8,8 @@ module.exports = function(app) {
 
     app.delete("/chat", messages.delete);
 
-    app.get("/uploads/:file", function(req, res, next) {
-        res.sendFile("uploads/" + req.params.file, {root: "../server/"});
+    app.get("/uploads/:filePath/:file", function(req, res, next) {
+        res.sendFile("uploads/" + req.params.filePath + "/" + req.params.file, {root: "../server/"});
     })
 
 };

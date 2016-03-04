@@ -164,7 +164,7 @@ html, body {margin:0;padding:0;height:100%;}
     height: 0.5em;
     background-color: limegreen;
     border-radius: 50%;
-    top: 16px;
+    margin-top: 5px;
     position: absolute;
     /*box-shadow: #295629 1px 1px 1px;*/
     animation: onlineblink;
@@ -239,6 +239,12 @@ html, body {margin:0;padding:0;height:100%;}
     border-radius: 5px;
     padding: 5px 10px;
     word-wrap: break-word;
+}
+
+#messageWindow .balloon span * {
+    font-size: inherit !important;
+    color: inherit !important;
+    font-weight: inherit !important;
 }
 
 #messageWindow #allMessages .balloon img {
@@ -323,7 +329,7 @@ video {
 #livetyping {
     font-style: italic;
     position: absolute;
-    bottom: 10%;
+    /*bottom: 10%;*/
     width: 75%;
     left: 25%;
     background-color: rgba(225,248,252,0.8);
@@ -373,7 +379,7 @@ video {
     padding: 18px 25px;
     text-align: center;
     display: inline-block;
-	background: white;
+	background: rgba(255,255,255,0.7);
     border-bottom-left-radius: 5px;
 }
 #media h2{

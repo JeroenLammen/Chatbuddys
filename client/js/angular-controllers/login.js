@@ -1,7 +1,7 @@
 chatApp.controller("loginController", function($scope, $cookies, $location) {
 
     $scope.login = function(){
-        if($scope.username.length > 3) {
+        if($scope.username.length > 3 && $scope.username.length < 20) {
             $cookies.put("username", $scope.username);
             if(!$cookies.get("ID")) {
                 $cookies.put("ID", generateID());

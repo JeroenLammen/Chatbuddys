@@ -2,6 +2,7 @@
 server/node_modules/
 server/config/
 server/uploads/*
+server/experiments/
 .DS_Store
 client/.DS_Store
 client/libraries/.DS_Store

@@ -22,7 +22,16 @@
             </div>
         </div>
     </div>
-
+    <div id="livetyping" ng-show="usersTyping.length">
+        <span ng-repeat="user in usersTyping">
+            {{user.username}}{{$last ? '' : ($index==usersTyping.length-2) ? ' and ' : ', '}}
+        </span>
+        <span ng-show="usersTyping.length === 1">is typing</span>
+        <span ng-show="usersTyping.length > 1">are typing</span>
+        <span class="dotanimate">
+            <span>.</span> <span>.</span> <span>.</span>
+        </span>
+    </div>
     <div id="messageWindow" class="mCustomScrollbar" data-mcs-theme="minimal-dark">
         <div id="allMessages">
             <ol>
@@ -40,16 +49,7 @@
         </div>
     </div>
 </section>
-    <div id="livetyping" ng-show="usersTyping.length">
-        <span ng-repeat="user in usersTyping">
-            {{user.username}}{{$last ? '' : ($index==usersTyping.length-2) ? ' and ' : ', '}}
-        </span>
-        <span ng-show="usersTyping.length === 1">is typing</span>
-        <span ng-show="usersTyping.length > 1">are typing</span>
-        <span class="dotanimate">
-            <span>.</span> <span>.</span> <span>.</span>
-        </span>
-    </div>
+
 
     <div id="bottombar">
         <div id="media">
@@ -67,9 +67,9 @@
                     <div id="messageField" contenteditable placeholder="Write a message..." ng-keyup="update($event)" ng-keydown="preventEnter($event)" ng-model="message"></div>
                 </li>
                 <li>
-                    <div class="balletje" id="bellen"><i class="fa fa-phone" ng-click="requestMicrophone()"></i></div></li>
+                    <div class="balletje" id="bellen"><i class="fa fa-phone"></i></div></li>
                 <li>
-                    <div class="balletje" id="bijlage"><i class="fa fa-paperclip" ng-click="openFile()"></i></div>
+                    <div class="balletje" id="bijlage" ng-click="openFile()"><i class="fa fa-paperclip" ></i></div>
                 </li>
             </ul>
         </div>
