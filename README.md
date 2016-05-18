@@ -9,7 +9,7 @@ Included:
 * Emoticons
 
 
-**No longer in development**
+*Made by Lennard Geven, Johan Schimmel, Joey Dankbaar, Mike Dusseldorp and Jeroen Lammen*
 
 ![alt text](https://github.com/JeroenLammen/Chatbuddys/blob/master/readme_images/Screenshot_1.png "login")
 
